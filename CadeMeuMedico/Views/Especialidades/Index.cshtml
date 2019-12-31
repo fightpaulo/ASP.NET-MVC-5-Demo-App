@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CadeMeuMedico.Models.Especialidade>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listagem das Especialidades</h2>
+
+<br />
+
+<p>
+    @Html.ActionLink("Adicionar Nova Especialidade", "Adicionar")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.IDEspecialidade }) |
+            @Html.ActionLink("Ver Detalhes", "Detalhes", new { id=item.IDEspecialidade }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id=item.IDEspecialidade })
+        </td>
+    </tr>
+}
+
+</table>

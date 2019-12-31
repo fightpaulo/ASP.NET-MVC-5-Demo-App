@@ -1,0 +1,74 @@
+﻿@using CadeMeuMedico.Models
+@model CadeMeuMedico.Models.ViewModels.MedicoViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listagem dos Médicos</h2>
+
+<br />
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <p class="col-md-3">
+            @Html.ActionLink("Adicionar Novo Médico", "Adicionar")
+        </p>
+
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.TextoPesquisaMedico, new { htmlattributes = new { @class = "form-control text-box single-line" } })
+        </div>
+
+        <div class="col-md-1">
+            <input class="btn btn-default" type="submit" id="btnPesquisar" value="Pesquisar" />
+            @*@Html.ActionLink("Pesquisar", "Index", null, new { @class = "btn btn-default" })*@
+        </div>
+        <div class="col-md-1">
+            @Html.ActionLink("Limpar", "Limpar", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+
+    <br /><br />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicos.FirstOrDefault().Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicos.FirstOrDefault().Cidade.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medicos.FirstOrDefault().Especialidade.Nome)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Medicos)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cidade.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Especialidade.Nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.IDMedico }) |
+                    @Html.ActionLink("Ver Detalhes", "Detalhes", new { id = item.IDMedico }) |
+                    @Html.ActionLink("Excluir", "Excluir", new { id = item.IDMedico })
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+
+
+

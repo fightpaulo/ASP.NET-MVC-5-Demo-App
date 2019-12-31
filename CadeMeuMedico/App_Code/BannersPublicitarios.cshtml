@@ -1,0 +1,16 @@
+﻿
+@helper  RetornaDoisBannersMaisRecentes(IEnumerable<CadeMeuMedico.Models.BannersPublicitarios> bannersPublicitarios)
+{ 
+<div style="width: 100%; text-align: center; border: 1px solid #efefef; padding: 10px; display: inline-block">
+    @foreach (var b in bannersPublicitarios)
+    {
+        <div sstyle="float:left; margin-right: 10px">
+            <a href="@b.LinkBanner">
+                <img style="width: 250px;"
+                     src="~/Images/Banners/@b.BannerCampanha" title="@b.TituloCampanha" />
+            </a>
+        </div>
+        <br />
+    }
+</div>  
+}

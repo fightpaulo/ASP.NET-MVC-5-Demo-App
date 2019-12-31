@@ -1,0 +1,100 @@
+﻿@model CadeMeuMedico.Models.Medico
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+<div class="modal fade" id="detalheMedicoModal" tabindex="-1" role="dialog" aria-labelledby="detalheMedicoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            @*Modal Header*@
+            <div class="modal-header">
+                <h3 class="modal-title" id="detalheMedicoModalLabel">Detalhes do Médico</h3>
+                <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close">
+                    @*@Html.ActionLink("", "Fechar", null, new { @class = "close", @aria-label = "Close" })*@
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            @*Modal Body*@
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CRM, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.CRM, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Bairro, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Bairro, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AtendePorConvenio, htmlAttributes: new { @class = "control-label" })
+                        @Html.CheckBoxFor(model => model.AtendePorConvenio, new { @disabled = "disabled" })
+
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TemClinica, htmlAttributes: new { @class = "control-label" })
+                        @Html.CheckBoxFor(model => model.TemClinica, new { @disabled = "disabled" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.WebsiteBlog, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.WebsiteBlog, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cidade.Nome, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Cidade.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Especialidade.Nome, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Especialidade.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                    </div>
+                </form>
+            </div>
+
+            @*Modal Footer*@
+            <div class="modal-footer">
+                @Html.ActionLink("Fechar", "Fechar", null, new { @class = "btn btn-secondary" })
+                @Html.ActionLink("Editar", "Editar", new { id = Model.IDMedico }, new { @class = "btn btn-primary" });
+            </div>
+        </div>
+    </div>
+</div>
+
+@section script
+    {
+    <script>
+        $(document).ready(function () {
+            $('#detalheMedicoModal').modal('show');
+        });
+
+        $('#btnClose').click(function () {
+            window.location.href = "/Medicos/Index";
+        });
+
+        $('#detalheMedicoModal').on("hidden.bs.modal", function () {
+            window.location.href = "/Medicos/Index";
+        });
+    </script>
+}
+

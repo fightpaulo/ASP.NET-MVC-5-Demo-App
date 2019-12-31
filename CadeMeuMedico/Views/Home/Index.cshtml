@@ -1,0 +1,13 @@
+﻿@using CadeMeuMedico.Models.CustomsHtmlHelpers
+@model IEnumerable<CadeMeuMedico.Models.BannersPublicitarios>
+
+@{
+
+}
+
+<h3>Não há nada para se ver aqui</h3>
+
+@BannersPublicitarios.RetornaDoisBannersMaisRecentes(Model)
+
+@Html.CustomButton("btnExemplo", "Esse é meu botão customizado.")
+
